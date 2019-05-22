@@ -1,0 +1,43 @@
+﻿<html>
+    <script type="text/javascript" src="../js/lib/angular.min.js"></script>
+    <title>test</title>
+    <style>
+        h1   {color: blue;}
+        p    {color: red;}
+        .container {border-width: 1px;
+                    border-color: red;
+                    border-style: solid;
+                    width: 200px;
+                    padding-left: 5px;
+                    padding-bottom: 2px;
+                    padding-top: 2px;}
+        </style>
+    </head>
+    <body ng-app="washers">
+        <div class="container" ng-controller="dormsController">
+
+    </div>
+    <script type="text/javascript">
+        //alert(findGetParameter("login"))
+        document.write("Witaj: "+findGetParameter("login"));
+
+        function findGetParameter(parameterName) {
+            var result = null,
+                    tmp = [];
+            location.search
+                    .substr(1)
+                    .split("&")
+                    .forEach(function (item) {
+                        tmp = item.split("=");
+                        if (tmp[0] === parameterName)
+                            result = decodeURIComponent(tmp[1]);
+                    });
+            return result;
+        }
+
+        angular.module('washers', []).controller('dormsController', function ($scope, $http) {
+
+        });
+    </script>
+</body>
+</html>

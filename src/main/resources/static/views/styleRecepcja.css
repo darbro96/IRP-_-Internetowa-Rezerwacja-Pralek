@@ -1,0 +1,124 @@
+body{
+ /background-image: url("img/tlo3.jpg");
+background: radial-gradient(circle, rgba(0,0,0,0.9808298319327731) 0%, rgba(205,53,43,0.958420868347339) 100%);
+	font-family: 'Roboto';
+}
+h1{
+color: #ffffff;	
+}
+.container{
+ margin: 20px;
+ padding: 10px;
+ height: 80%;
+ text-align: center;
+ 
+}
+.box1{
+
+ background-color: #ffffff;
+ height: 100%;
+ width: 100%;
+ float: left;
+ box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.2);
+ border: 1px solid black;
+}
+.wbox1{
+
+ background-color: orange;
+ width: 400px;
+ height: 500px;
+ min-width: 310px;
+ box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.2);
+ position: center;
+}
+.box2{
+
+ background-color: #ffffff;
+ height: 100%;
+ width: 33%;
+ float: left;
+ box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.2);
+ 
+}
+
+input::-webkit-input-placeholder, button {
+  font-family: 'roboto', sans-serif;
+  -webkit-transition: all 0.3s ease-in-out;
+          transition: all 0.3s ease-in-out;
+}
+
+input {
+font-size: 16px;
+  margin: 10px;
+  width: 350px;
+  display: block;
+  border: none;
+  padding: 10px 0;
+  border-bottom: solid 1px #990118;
+  -webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+          transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, #990118; 4%);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #990118; 4%);
+  background-position: -200px 0;
+  background-size: 200px 100%;
+  background-repeat: no-repeat;
+  color: #0e6252;
+  float: center;
+}
+input:focus, input:valid {
+  box-shadow: none;
+  outline: none;
+  background-position: 0 0;
+}
+input:focus::-webkit-input-placeholder, input:valid::-webkit-input-placeholder {
+  color: #370505;
+  font-size: 11px;
+  -webkit-transform: translateY(-20px);
+          transform: translateY(-20px);
+  visibility: visible !important;
+}
+
+button {
+  border: none;
+  font-size: 16px;
+background-color: #22c1c3;
+  cursor: pointer;
+  border-radius: 3px;
+  padding: 10px;
+  width: 100px;
+  color: white;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+  float: left;
+  margin: 16px;
+  
+ 
+}
+button:hover {
+  -webkit-transform: translateY(-3px);
+      -ms-transform: translateY(-3px);
+          transform: translateY(-3px);
+  box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+table{
+    border: 0px solid black;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    font-size: 20px;
+}
+th{
+    width: 10%;
+    margin: 0;
+    padding: 0;
+    background-color: silver;
+    border: 1px solid black;
+}
+td{
+    width: 10%; 
+    border: 1px solid black;
+    /border-bottom: 2px solid gray;
+    /border-left: 1px solid silver;
+    margin: 0;
+    padding: 0;
+}

@@ -1,0 +1,47 @@
+﻿<html>
+    <head><title>IRP-Internetowy rejestrator pralek</title>
+        <script type="text/javascript" src="../js/lib/angular.min.js"></script>
+        <link rel="stylesheet" href="style/styleRecepcja.css" type="text/css">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="refresh" content="60; url='/'">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link rel="shortcut icon" type="image/png" href="/img/favicon.png"/>
+    </head>
+
+    <body ng-app="washers">
+
+        <div class="container" ng-controller="recepcjaController">
+            <h1>Wydawanie i odbiór kluczy &nbsp &nbsp{{ clock | date:'HH:mm:ss'}}</h1><div class="box1">
+                <table>
+                    <tr><th>Id rezerwacji<th>Imię<th>Nazwisko<th>Pralka<th>Pomieszczenie<th>Godziny</tr>
+                    <tr ng-repeat="x in reservations" bgcolor="{{x.color}}">
+                        <td>{{x.reservation.idReservation}}<td>{{x.reservation.user.name}}<td>{{x.reservation.user.lastName}}<td>{{x.reservation.washer.noWasher}}<td>{{x.reservation.washer.laundry.name}}<td>{{x.reservation.timeStart}} - {{x.reservation.timeStop}}
+                    </tr>
+                </table>
+
+            </div>
+
+        </div>
+        <script type="text/javascript">
+            angular.module('washers', []).controller('recepcjaController', function ($scope, $http, $interval) {
+                $http.get("http://localhost:8080/res/today").
+                        then(function (result) {
+                            $scope.reservations = result.data;
+                        }), function (err) {
+                    console.log("err", err);
+                };
+                var tick = function () {
+                    $scope.clock = Date.now();
+                }
+                tick();
+                $interval(tick, 1000);
+            });
+
+            function myTime()
+            {
+                var today = new Date();
+
+            }
+        </script>
+    </body>
+</html>

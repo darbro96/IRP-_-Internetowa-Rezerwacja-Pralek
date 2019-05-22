@@ -1,0 +1,301 @@
+﻿<html>
+    <head><title>IRP-Internetowy rejestrator pralek</title>
+        <script type="text/javascript" src="../js/lib/angular.min.js"></script>
+        <link rel="stylesheet" href="style/style_panel.css" type="text/css">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link rel="shortcut icon" type="image/png" href="/img/favicon.png"/>
+    </head>
+    <body ng-app="washers">
+        <div class="container" ng-controller="panelController" ng-show="isShow">
+
+            <div class="panelH">
+                <b>Internetowy rejestrator pralek</b><div class="panelHR">Zalogowany jako: <b>{{user.name}} {{user.lastName}}</b>  <button class="wylogoj" ng-click="logout()">Wyloguj</button>
+                </div>
+            </div>
+
+            <!--             <div class="panelL">
+                            <div class="panelLogo"><img src="img/logoRP.png" width='200'>
+                            </div>
+                            <div id="panelMenu">
+                                <form><button>Ostrzeżenia</button></form>
+                                <form><button ng-click="logout()">Wyloguj</button></form>
+            <br>Dostępne pralki:
+                                <form> -->
+
+            <!--                    <a href="#"><div class="button">Pralka F1_01</div></a>
+                                <a href="#"><div class="button">Pralka F1_02</div></a>
+                                <a href="#"><div class="button">Pralka F1_03</div></a>
+                                <a href="#"><div class="button">Pralka F1_04</div></a>-->
+
+            <!--                         <ul>
+                                        <li data-ng-repeat="w in washers.data">
+                                            <button ng-click="selectWasher(w.idWasher)">Pralka nr {{w.noWasher}} pralnia {{w.laundry.name}} </button>
+                                        </li>
+                                    </ul>
+                                </form>
+                            </div> -->
+
+            <!--                <div class="panelMenu2">
+                                <form>
+                                                    <a href="#"><div class="button">Pralka F1_01</div></a>
+                                                    <a href="#"><div class="button">Pralka F1_02</div></a>
+                                                    <a href="#"><div class="button">Pralka F1_03</div></a>
+                                                    <a href="#"><div class="button">Pralka F1_04</div></a>
+            
+                                <ul>
+                                    <li data-ng-repeat="w in washers.data">
+                                        <button>Pralka nr {{w.noWasher}} pralnia {{w.laundry.name}} </button>
+                                    </li>
+                                </ul>
+                                </form>
+                            </div>-->
+
+            <!--    </div> -->
+
+
+            <div class="panelR">
+                <!--<h2>Podsumowanie</h2>-->
+                <!--                <div class="box"><h1>2</h1>Liczba ostrzeżeń</div>-->
+                <!--                <div class="box"><h1>{{user.reservations}}</h1>Ilość rezerwacji</div>
+                                <div class="box"><h1>{{user.laundry.name}}</h1>Przydzielona pralnia</div>-->
+                <center><div class="panelRejestracja">
+                        <div class="rejestracja1"> 
+                            <form>
+
+                                <img src="img/kal.png" > <input type="date" name="data" class="ustaw_date" ng-model="dateReservation" min="{{date| date:'yyyy-MM-dd'}}" max="{{date8| date:'yyyy-MM-dd'}}" required >
+                                <img src="img/zeg.png" ><input type="time" name="date" ng_model="timeStartReservation" min="06:00" max="21:00" step="1800" required>
+                                <img src="img/ding.png" > <span class="validity"></span>
+                                <select ng-model="timeOption">
+                                    <option value="1.5">1,5 godz</option>
+                                    <option value="2">2 godz</option>
+                                    <option value="2.5">2,5 godz</option>
+                                    <option value="3">3 godz</option>
+                                    <option value="3.5">3,5 godz</option>
+                                    <option value="4">4 godz</option>
+                                </select>
+                                <button ng-click="reservation()">Rezerwuj</button>
+                            </form>
+                        </div>
+                        <div class="rejestracja2">
+                            <button ng-click="myReservations()">Moje rezerwacje</button>
+                            <button ng-click="timetableOn()">Harmonogramy</button>
+                        </div>
+                    </div>
+                    <div class="panelHarmonogram" ng-show="isSelectedWasher"><center>
+                            <h3>Harmonogram pralki nr: <select ng-model="selectedWasher" ng-change="selectWasher()" ng-options="x.noWasher for x in washers"></select></h3>
+                            
+                            <table>
+                                <tr><th>Godz</th><th>{{date| date:'yyyy-MM-dd'}}</th><th>{{date1| date:'yyyy-MM-dd'}}</th><th>{{date2| date:'yyyy-MM-dd'}}</th><th>{{date3| date:'yyyy-MM-dd'}}</th><th>{{date4| date:'yyyy-MM-dd'}}</th><th>{{date5| date:'yyyy-MM-dd'}}</th><th>{{date6| date:'yyyy-MM-dd'}}</th><th>{{date7| date:'yyyy-MM-dd'}}</th><th>{{date8| date:'yyyy-MM-dd'}}</th></tr>
+                                <tr ng-repeat="x in timetable">
+                                    <td>{{x.time}}</td><td bgcolor="{{x.resToday.color}}"></td><td bgcolor="{{x.resToday1.color}}"></td><td bgcolor="{{x.resToday2.color}}"></td><td bgcolor="{{x.resToday3.color}}"></td><td bgcolor="{{x.resToday4.color}}"></td><td bgcolor="{{x.resToday5.color}}"></td><td bgcolor="{{x.resToday6.color}}"></td><td bgcolor="{{x.resToday8.color}}"></td><td bgcolor="{{x.resToday3.color}}"></td>
+                            </table>
+                            <div class="legenda">
+                                Legenda: <br><div class="legenda1"></div>twoja rezerwacja<br><div class="legenda2"></div>inne rezerwacje
+                                </div>
+                    </div>
+
+
+                    <div class="panelOkRezerwacji" ng-show="isReservation"><center>
+                            <img src="img/animacja2.gif" width="20%"><br>
+                            Zarezerwowano poprawnie<br><br>
+                    </div>
+
+                    <center><div class="startBox" ng-show="firstView"><br>
+                            <center><img src="img/animacja1.gif" width="30%">
+                                <h3>Wybierz harmonogram pralki nr: <select ng-model="selectedWasher" ng-change="selectWasher()" ng-options="x.noWasher for x in washers"></select> i zarezerwuj</h3>
+
+                        </div>
+
+                        <div class="mojeRezerwacje" ng-show="myResView">
+                            <h3>Moje rezerwacje: </h3>
+                            <ul>
+                                <li data-ng-repeat="r in userReservations">
+                                    Rezerwacja nr {{r.idReservation}} , data: {{r.date}} w godzinach {{r.timeStart}} - {{r.timeStop}} - Pralka nr {{r.washer.noWasher}} (pralnia {{r.washer.laundry.name}}) <button ng-click="deleteReservation(r.idReservation)">Usuń</button>
+                                </li>
+                            </ul>
+                            <h4>Historia rezerwacji</h4>
+                            <ul>
+                                <li data-ng-repeat="r in userOldReservations">
+                                    Rezerwacja nr {{r.idReservation}} , data: {{r.date}} w godzinach {{r.timeStart}} - {{r.timeStop}} - Pralka nr {{r.washer.noWasher}} (pralnia {{r.washer.laundry.name}})
+                                </li>
+                            </ul>
+                        </div>
+
+                        </div>				
+                        </div>
+                        <script type="text/javascript" onLoad="clearForms()">
+                            function clearForms()
+                            {
+                                var i;
+                                for (i = 0; (i < document.forms.length); i++) {
+                                    document.forms[i].reset();
+                                }
+                            }
+
+                            angular.module('washers', []).controller('panelController', function ($scope, $http) {
+                                $scope.isShow = false;
+                                $scope.selectedWasher = null;
+                                $scope.firstView = true;
+                                $scope.isSelectedWasher = false;
+                                $scope.isReservation = false;
+                                $scope.myResView = false;
+                                $scope.date = new Date();
+                                $scope.date1 = new Date();
+                                $scope.date1.setDate($scope.date.getDate()+1);
+                                $scope.date2 = new Date();
+                                $scope.date2.setDate($scope.date.getDate()+2);
+                                $scope.date3 = new Date();
+                                $scope.date3.setDate($scope.date.getDate()+3);
+                                $scope.date4 = new Date();
+                                $scope.date4.setDate($scope.date.getDate()+4);
+                                $scope.date5 = new Date();
+                                $scope.date5.setDate($scope.date.getDate()+5);
+                                $scope.date6 = new Date();
+                                $scope.date6.setDate($scope.date.getDate()+6);
+                                $scope.date7 = new Date();
+                                $scope.date7.setDate($scope.date.getDate()+7);
+                                $scope.date8 = new Date();
+                                $scope.date8.setDate($scope.date.getDate()+8);
+                                var showPage = false;
+                                var login = findGetParameter("login");
+                                var password = findGetParameter("password");
+                                $http.get("http://localhost:8080/log/" + login + "/" + password).
+                                        then(function (result) {
+                                            console.log("success", result);
+                                            if (!result.data)
+                                            {
+                                                window.location = "/b";
+                                            } else
+                                            {
+                                                showPage = true;
+                                                $scope.isShow = true;
+                                                if (showPage) {
+                                                    console.log("showPage", showPage);
+                                                }
+                                                $http.get("http://localhost:8080/users/id/" + login).
+                                                        then(function (result) {
+                                                            $scope.user = result.data;
+                                                            console.log("user", $scope.user);
+                                                            $http.get("http://localhost:8080/w/" + $scope.user.dormitory.name).
+                                                                    then(function (result) {
+                                                                        console.log("washers", result)
+                                                                        $scope.washers = result.data;
+                                                                    }), function (err) {
+                                                                console.log("err", err);
+                                                            };
+                                                            $http.get("http://localhost:8080/res/user/" + $scope.user.idUser).
+                                                                    then(function (result) {
+                                                                        console.log("rezerwacje", result);
+                                                                        $scope.user.reservations = result.data;
+                                                                    }), function (err) {
+                                                                console.log("err", err);
+                                                            };
+                                                        }), function (err) {
+                                                    console.log("err", err);
+                                                };
+                                                $scope.selectWasher = function () {
+                                                    $scope.firstView = false;
+                                                    $scope.isSelectedWasher = true;
+                                                    $http.get("http://localhost:8080/res/timetable/" + $scope.selectedWasher.idWasher + "/" + $scope.user.idUser).
+                                                            then(function (result) {
+                                                                $scope.timetable = result.data;
+                                                            }), function (err) {
+                                                        console.log("err", err)
+                                                    };
+                                                }
+                                                $scope.reservation = function () {
+                                                    $http.get("http://localhost:8080/res/add/" + $scope.user.idUser + "/" + $scope.selectedWasher.idWasher + "/" + $scope.dateReservation + "/" + $scope.timeStartReservation + "/" + $scope.timeOption).
+                                                            then(function (result) {
+                                                                console.log("wynik", result);
+                                                                if (result.data == true)
+                                                                {
+                                                                    //alert("Zarezerwowano");
+                                                                    $scope.isSelectedWasher = false;
+                                                                    $scope.isReservation = true;
+                                                                    $scope.myResView = false;
+                                                                    $scope.reservatedDate = $scope.dateReservation;
+                                                                    $scope.reservatedTime = $scope.timeStartReservation;
+                                                                    $http.get("http://localhost:8080/res/timetable/" + $scope.selectedWasher.idWasher + "/" + $scope.user.idUser).
+                                                                            then(function (result) {
+                                                                                $scope.timetable = result.data;
+                                                                            }), function (err) {
+                                                                        console.log("err", err)
+                                                                    };
+                                                                } else
+                                                                {
+                                                                    alert("Nie zarezerwowano. Sprawdź termin i poprwaność danych");
+                                                                }
+                                                            }), function (err) {
+                                                        console.log("err", err);
+                                                        alert("Nie zarezerwowano/nSprawdź termin i poprwaność danych");
+                                                    };
+                                                };
+                                            }
+                                        }), function (err) {
+                                    console.log("err", err);
+                                    window.location = "/";
+                                };
+                                $scope.logout = function () {
+                                    window.location = "/wyloguj";
+                                };
+                                $scope.timetableOn = function () {
+                                    $scope.firstView = false;
+                                    $scope.isReservation = false;
+                                    $scope.isSelectedWasher = true;
+                                    $scope.myResView = false;
+                                };
+                                $scope.myReservations = function () {
+                                    $http.get("http://localhost:8080/res/byuser/" + $scope.user.idUser).
+                                            then(function (result) {
+                                                $scope.userReservations = result.data;
+                                            }), function (err) {
+                                        console.log("err", err);
+                                    };
+                                    $http.get("http://localhost:8080/res/byuser-old/" + $scope.user.idUser).
+                                            then(function (result) {
+                                                $scope.userOldReservations = result.data;
+                                            }), function (err) {
+                                        console.log("err", err);
+                                    };
+                                    $scope.firstView = false;
+                                    $scope.isReservation = false;
+                                    $scope.isSelectedWasher = false;
+                                    $scope.myResView = true;
+                                };
+                                
+                                $scope.deleteReservation = function (idReservation) {
+                                    $http.get("http://localhost:8080/res/delete/" + idReservation).
+                                            then(function (result) {
+                                                if (result.data == true) {
+                                                    $scope.firstView = true;
+                                                    $scope.isReservation = false;
+                                                    $scope.isSelectedWasher = false;
+                                                    $scope.myResView = false;
+                                                    alert("Usunięto rezerwację");
+                                                } else
+                                                {
+                                                    alert("Nie usunięto rezerwacji!");
+                                                }
+                                            }), function (err) {
+                                        console.log("err", err);
+                                    };
+                                }
+                            });
+
+                            function findGetParameter(parameterName) {
+                                var result = null,
+                                        tmp = [];
+                                location.search
+                                        .substr(1)
+                                        .split("&")
+                                        .forEach(function (item) {
+                                            tmp = item.split("=");
+                                            if (tmp[0] === parameterName)
+                                                result = decodeURIComponent(tmp[1]);
+                                        });
+                                return result;
+                            }
+                        </script>
+                        </body>
+                        </html>

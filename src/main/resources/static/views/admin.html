@@ -1,0 +1,345 @@
+﻿<html>
+    <head><title>IRP-Internetowy rejestrator pralek</title>
+        <link rel="stylesheet" href="style/styleAdmin.css" type="text/css">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <script type="text/javascript" src="../js/lib/angular.min.js"></script>
+        <link rel="shortcut icon" type="image/png" href="/img/favicon.png"/>
+    </head>
+
+    <body ng-app="washers" ng-controller="adminController">
+        <div class="logowanieAdmin" ng-hide="pokaz">
+
+            <form>
+                <h1><img src="img/logo.png" width="60">Panel logowania</h1>
+                <br><div class="logowanieGora">
+                    <input placeholder="Login" type="text" required="" name="login" ng-model="login">
+                    <input placeholder="Hasło" type="password" required="" name="password" ng-model="passwordAdmin">
+
+                    <button ng-click="loguj()">Zaloguj</button>
+
+
+            </form>
+        </div>
+    </div>
+    <div class="container"  ng-show="pokaz">
+        <h2>Panel administracyjny - Rezerwator v. 1.0</h2><center><div class="box1"><br><center>
+                    <div class="wbox1">
+                        <h2>Zarządzaj mieszkańcami</h2>
+                        <img src="img/user.png" >
+                    </div>
+
+                    <div class="wbox1">
+
+                        <form>
+                            <input placeholder="Podaj ID do modyfikacji lub usunięcia" type="text" name="firstname" required ng-model="userId">
+                            <button ng-click="getUser()">Wywołaj</button><br><br><br>
+                        </form>
+
+                        <form>
+
+                            <br><input placeholder="Imię" type="text" name="firstname" required ng-model="userName">
+                            <input placeholder="Nazwisko" type="text" name="lastname" required ng-model="userLastName">
+
+
+                            <input type="password" placeholder="PIN" type="text" name="lastname" required="" ng-model="password">
+                            <select ng-model="selectedDormitory" ng-options="x.name for x in dorms" ng-change="selectDormitory()"><option value="" hidden>Wybierz akademik</option></select>
+                            <select ng-model="selectedLaundry" ng-options="x.name for x in laundries" ng-change="selectLaundry()"><option value="" hidden>Wybierz pralnię</option></select>
+                        </form>
+                        <form>
+                            <button ng-click="addUser()">Dodaj</button>
+                        </form>
+                        <form>
+                            <button ng-click="modifyUser()">Modyfikuj</button>
+                        </form>
+                        <form>
+                            <button ng-click="delUser()">Usuń</button>
+                        </form>
+
+
+                    </div>
+            </div>
+            <div class="box1"><br><center>
+                    <div class="wbox1">
+                        <h2>Zarządzaj pralniami</h2>
+                        <img src="img/addPralki.png" >
+                    </div>
+                    <div class="wbox1">
+                        <form>
+                            <input placeholder="Podaj ID do modyfikacji lub usunięcia" type="text" name="firstname" required ng-model="idLaundry">
+                            <button ng-click="getLaundry()">Wywołaj</button><br>
+                        </form>
+                        <form>
+                            <select ng-model="selectedDormitory" ng-options="x.name for x in dorms" ng-change="selectDormitory()"><option value="" hidden>Wybierz akademik</option></select>
+                            <br><input placeholder="Nazwa" type="text" name="firstname" required ng-model="nameWasher">
+                        </form>
+                        <form>
+                            <button ng-click="addLaundry()">Dodaj</button>
+                        </form>
+                        <form>
+                            <button ng-click="modifyLaundry()">Modyfikuj</button>
+                        </form>
+                        <form>
+                            <button ng-click="delLaundry()">Usuń</button><br>
+                        </form>
+                    </div>
+            </div>
+            <div class="box1"><br><center>
+                    <div class="wbox1">
+                        <h2>Zarządzaj pralkami</h2>
+                        <img src="img/addPralka.png" >
+                    </div>
+                    <div class="wbox1">
+                        Zarządzaj pralkami
+                        <form>
+                            <input placeholder="Podaj ID do modyfikacji lub usunięcia" type="text" name="firstname" required="" ng-model="idWasher">
+                            <button ng-click="getWasher()">Wywołaj</button><br>
+                        </form>
+                        <form>
+                            <select  ng-model="selectedDormitory" ng-options="x.name for x in dorms" ng-change="selectDormitory()"><option value="" hidden>Wybierz akademik</option></select>
+                            <select ng-model="selectedLaundry" ng-options="x.name for x in laundries" ng-change="selectLaundry()"><option value="" hidden>Wybierz pralnię</option></select>
+                            <br><input placeholder="Numer pralki" type="text" name="noWasher" required ng-model="noWasher">
+                            <button ng-click="addWasher()">Dodaj</button>
+                        </form>
+                        <form>
+                            <button ng-click="modWasher()">Modyfikuj</button>
+                        </form>
+                        <form>
+                            <button ng-click="delWasher()">Usuń</button>
+                        </form>
+                    </div>
+            </div>
+
+            <form>
+                <button ng-click="logout()">Wyloguj</button>
+            </form>
+
+    </div>
+    <script type="text/javascript">
+        angular.module('washers', []).controller('adminController', function ($scope, $http) {
+            $scope.pokaz = false;
+            $http.get("http://localhost:8080/aka/all").
+                    then(function (result) {
+                        $scope.dorms = result.data;
+                        console.log("ok", result);
+                    }), function (err) {
+                console.log("err", err);
+            };
+            $scope.selectDormitory = function ()
+            {
+                $scope.dormitoryName = $scope.selectedDormitory.name;
+                console.log("Sel Dorm", $scope.dormitoryName);
+                $http.get("http://localhost:8080/aka/l/" + $scope.dormitoryName).
+                        then(function (result) {
+                            $scope.laundries = result.data;
+                            console.log("ok", result);
+                        }), function (err) {
+                    console.log("err", err);
+                };
+            };
+            $scope.selectLaundry = function () {
+                $scope.laundry = $scope.selectedLaundry.idLaundry;
+                console.log("Laundry", $scope.laundry);
+            };
+
+            $scope.addUser = function () {
+                $http.get("http://localhost:8080/users/add/" + $scope.userName + "/" + $scope.userLastName + "/" + $scope.selectedDormitory.idDormitory + "/" + $scope.selectedLaundry.idLaundry).
+                        then(function (result) {
+                            $scope.newUser = result.data.idUser;
+                            $http.get("http://localhost:8080/users/setPassword/" + $scope.newUser + "/" + $scope.password).
+                                    then(function (result) {
+                                        if (result.data == true)
+                                        {
+                                            alert("Dodano do bazy. Identyfikator użytkownika: "+$scope.newUser);
+                                        } else
+                                        {
+                                            alert("Nie dodano danych do bazy!");
+                                        }
+                                    }), function (err) {
+                                console.log("err", err);
+                            };
+                        }), function (err) {
+                    console.log("err", err);
+                };
+            };
+            $scope.getUser = function () {
+                $http.get("http://localhost:8080/users/id/" + $scope.userId).
+                        then(function (result) {
+                            if (result.data != "")
+                            {
+                                $scope.userName = result.data.name;
+                                $scope.userLastName = result.data.lastName;
+                            } else
+                            {
+                                alert("Nie znaleziono wskazanego użytkownika");
+                            }
+                        }), function (err) {
+                    console.log("err", err);
+                };
+            };
+            $scope.modifyUser = function () {
+                //console.log("click", "modify");
+                $http.get("http://localhost:8080/users/mod/" + $scope.userId + "/" + $scope.userName + "/" + $scope.userLastName + "/" + $scope.selectedDormitory.idDormitory + "/" + $scope.selectedLaundry.idLaundry + "/" + $scope.password).
+                        then(function (result) {
+                            if (result.data == true)
+                            {
+                                alert("Dokonano zmian pomyślnie");
+                            } else
+                            {
+                                alert("Nie dokonano zmian!");
+                            }
+                        }), function (err) {
+                    console.log("err", err);
+                };
+            };
+            $scope.delUser = function () {
+                $http.get("http://localhost:8080/users/del/" + $scope.userId).
+                        then(function (result) {
+                            if (result.data == null)
+                            {
+                                alert("Usunięto użytkownika");
+                            } else
+                            {
+                                alert("Nie usunięto użytkownika!");
+                            }
+                        }), function (err) {
+                    console.log("err", err);
+                    alert(err);
+                };
+            };
+            $scope.addLaundry = function () {
+                $http.get("http://localhost:8080/w/add/l/" + $scope.nameWasher + "/" + $scope.selectedDormitory.idDormitory).
+                        then(function (result) {
+                            if (result.data == true)
+                            {
+                                alert("Dodano do bazy");
+                            } else
+                            {
+                                alert("Nie dodano do bazy!");
+                            }
+                        }), function (err) {
+                    console.log("err", err);
+                    alert("Nie dodano do bazy!");
+                };
+            };
+            $scope.getLaundry = function () {
+                $http.get("http://localhost:8080/w/laundry/" + $scope.idLaundry).
+                        then(function (result) {
+                            if (result.data.name != null)
+                            {
+                                $scope.nameWasher = result.data.name;
+                            } else
+                            {
+                                alert("Nie znaleziono obiektu o podanym id");
+                            }
+                        }), function (err) {
+                    console.log("err", err);
+                };
+            };
+            $scope.modifyLaundry = function () {
+                $http.get("http://localhost:8080/w/laundry/mod/" + $scope.idLaundry + "/" + $scope.nameWasher + "/" + $scope.selectedDormitory.idDormitory).
+                        then(function (result) {
+                            if (result.data == true)
+                            {
+                                alert("Zmodyfikowano pomyślnie");
+                            } else
+                            {
+                                alert("Nie zmodyfikowano");
+                            }
+                        }), function (err) {
+                    console.log("err", err);
+                    alert("Błąd " + err);
+                };
+            };
+            $scope.delLaundry = function () {
+                $http.get("http://localhost:8080/w/laundry/del/" + $scope.idLaundry).
+                        then(function (result) {
+                            if (result.data == true)
+                            {
+                                alert("Usunięto pomyślnie");
+                            } else
+                            {
+                                alert("Nie usunięto");
+                            }
+                        }), function (err) {
+                    console.log("err", err);
+                    alert("Błąd " + err);
+                };
+            };
+            $scope.addWasher = function () {
+                $http.get("http://localhost:8080/w/add/" + $scope.noWasher + "/" + $scope.selectedLaundry.idLaundry).
+                        then(function (result) {
+                            if (result.data == true)
+                            {
+                                alert("Dodano pomyślnie");
+                            } else
+                            {
+                                alert("Nie dodano");
+                            }
+                        }), function (err) {
+                    console.log("err", err);
+                };
+            };
+            $scope.modWasher = function () {
+                $http.get("http://localhost:8080/w/mod/" + $scope.idWasher + "/" + $scope.noWasher + "/" + $scope.selectedLaundry.idLaundry).
+                        then(function (result) {
+                            if (result.data == true)
+                            {
+                                alert("Zmodyfikowano pomyślnie");
+                            } else
+                            {
+                                alert("Nie zmodyfikowano!");
+                            }
+                        }), function (err) {
+                    console.log("err", err);
+                }
+            };
+            $scope.getWasher = function () {
+                $http.get("http://localhost:8080/w/id/" + $scope.idWasher).
+                        then(function (result) {
+                            if (result.data.noWasher != null)
+                            {
+                                $scope.noWasher = result.data.noWasher;
+                            } else
+                            {
+                                alert("Nie znaleziono obiektu o podanym id");
+                            }
+                        }), function (err) {
+                    console.log("err", err);
+                }
+            };
+            $scope.delWasher = function () {
+                $http.get("http://localhost:8080/w/del/" + $scope.idWasher).
+                        then(function (result) {
+                            if (result.data == true)
+                            {
+                                alert("Usunięto pomyślnie");
+                            } else
+                            {
+                                alert("Nie usunięto");
+                            }
+                        }), function (err) {
+                    console.log("err", err);
+                };
+            };
+            $scope.loguj = function () {
+                $http.get("http://localhost:8080/log/admin/" + $scope.login + "/" + $scope.passwordAdmin).
+                        then(function (result) {
+                            if (result.data == true)
+                            {
+                                $scope.pokaz = true;
+                            } else
+                            {
+                                alert("Niepoprawne dane logowania!")
+                            }
+                        }), function (err) {
+                    console.log("err", err);
+                };
+            };
+            $scope.logout = function () {
+                $scope.pokaz = false;
+            };
+        });
+    </script>
+</body>
+</html>

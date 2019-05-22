@@ -1,0 +1,394 @@
+body{
+
+    font-family: 'Roboto';
+    margin: 0;
+    background-color: #ffffff;
+}
+.container{
+    font-size: 22px;
+
+}
+.panelH{
+    height: 60px;
+    width: 100%;
+    background-color: #FF8C00;
+    /box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    /z-index: -1;
+    float: left;
+	   padding-right: 60px;
+    padding-top: 20px;
+	padding-left: 20px;
+}
+.panelHR{
+    height: 60px;
+    /width: 60px;
+    /background-color: YELLOW;
+    float: right;
+    margin-right: 60px;
+    /margin-top: 20px;
+	padding: 0;
+
+}
+.panelL{
+    height: 100%;
+    width: 300px;
+    background-image: linear-gradient(to right bottom, #370505, #560510, #770315, #990118, #bc0019);
+    box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.2);
+    float:left;
+    color: #ffffff;
+
+
+}
+.panelR{
+    height: 100%;
+    width: 100%;
+    /background-color: yellow;
+    /box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.2);
+    margin-top: 60px;
+    margin-bottom: 30px;
+    /margin-left: 300px;
+    /text-align: center;
+    float: left;
+    
+	
+	
+
+
+}
+.panelLogo{
+    height: 100%;
+    width: 100px;
+    position: fixed;
+    margin-left: 50px;
+    padding-top: 50px;
+}
+#panelMenu{
+    /height: 100%;
+    width: 300px;
+    font-weight: bold;
+    /position: fixed;
+    /margin-left: 50px;
+    padding-top: 200px;
+    text-align: center;
+}
+/*.panelMenu2{
+        /height: 100%;
+        width: 300px;
+        font-weight: bold;
+        /position: fixed;
+        /margin-left: 50px;
+        padding-top: 350px;
+        text-align: center;
+}*/
+
+.button{
+    /background-color: orange;
+    height: 40px;
+    width: 100%;
+}
+
+.box{
+    color: #696969;
+    /background-color: orange;
+    height: 200px;
+    width: 250px;
+    border: 2px solid #696969;
+    border-radius: 20px;
+    text-align: center;
+    float: left;
+    margin-left: 60px;
+    /background-image: url("uwaga.svg");
+}
+
+a:link, a:visited,  a:visited , a:hover, a:active {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+h1{
+    margin: 0;
+    padding: 20px;
+    font-size: 60px;
+}
+h2{
+    padding-left: 60px;
+	padding-bottom: 10px;
+}
+
+h3{
+	/padding-top: 10px;
+    padding-left: 60px;
+	padding-bottom: 10px;
+}
+
+
+form h1 {
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+input, select {
+     font-size: 16px;
+    margin: 10px;
+    width: 110px; 
+    ddisplay: block;
+    border: none;
+    padding: 10px;
+    border-bottom: solid 2px #990118;
+    -webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+	transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, #990118, 4%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #990118, 4%); 
+    background-position: -200px 0;
+   background-size: 200px 100%;
+    background-repeat: no-repeat;
+    color: #0e6252;
+	/color: #ffffff;
+	/background: #2c3e50;
+	font-weight: bold; 
+	
+
+}
+input:focus, input:valid {
+    box-shadow: none;
+    outline: none;
+    background-position: 0 0;
+}
+input:focus::-webkit-input-placeholder, input:valid::-webkit-input-placeholder {
+    color: #370505;
+    font-size: 11px;
+    -webkit-transform: translateY(-20px);
+    transform: translateY(-20px);
+	visibility: visible !important;
+}
+.ustaw_date
+{
+	width: 180px; 
+}
+.wylogoj{
+background: none;
+padding: 0;
+margin: 0;
+box-shadow: none;
+font-size: 22px;
+color: 	#8B0000;
+}
+button {
+    border: none;
+    font-size: 16px;
+    background-image: linear-gradient(to right bottom, #370505, #560510, #770315, #990118, #bc0019);
+    cursor: pointer;
+    /border-radius: 3px;
+    padding: 6px;
+    width: 150px;
+    height: 40px;
+    color: white;
+    margin: 10px;
+	
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+}
+button:hover {
+    -webkit-transform: translateY(-3px);
+    -ms-transform: translateY(-3px);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.2);
+
+}
+
+.pomoc{
+    text-align: center;
+    color:gray;
+    padding: 6px;
+    width: 300px;
+    margin-left: 100px;
+    margin-top: 10px;
+    font-size: 16px;
+}
+.pomoc:hover {
+    color:orange;
+}
+a{
+    text-decoration: none;
+}
+
+.panelRejestracja{
+    width: 100%;
+    background-color: orange;
+    height: 60px;
+    float: left;
+	box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.2);
+	padding-left: 40px;
+	position: fixed;
+	/padding: 10px;
+}
+
+.panelHarmonogram{
+    width: 95%;
+    /background-color: blue;
+    height: 100%;
+    float: left;
+    padding:  20px;
+	margin-top: 60px;
+	text-align: center;
+        margin-bottom: 20px;
+	
+}
+.panelOkRezerwacji{
+    /animation: bounce-in-top 1.1s both;
+    width: 95%;
+    /background-color: silver;
+    height: 100%;
+    float: left;
+    padding:  20px;
+	margin-top: 60px;
+	text-align: center;
+        margin-bottom: 20px;
+        	text-align: center;
+	font-size: 30px;
+	color: gray;
+	padding-top: 80px;
+	
+}
+.legenda{
+    /background-color: yellow;
+    margin: 20px;
+    height: 100px;
+    /float: left;
+ width: 300px;
+}
+.legenda1{
+    background-color: #FF6347;
+    height: 20px;
+    width: 20px;
+    /padding: auto;
+    float: left;
+    
+}
+.legenda2{
+    background-color: #C71585;
+    height: 20px;
+    width: 20px;
+    /padding: auto;
+    float: left;
+    
+}
+table{
+    /border: 1px solid black;
+    width: 90%;
+    text-align: center;
+    border-collapse: collapse;
+}
+th{
+    width: 10%;
+        margin: 0;
+    padding: 0;
+    background-color: silver;
+}
+td{
+    width: 10%; 
+    border: 1px solid silver;
+    border-left: 1px solid silver;
+    font-size: 10px;
+    margin: 0;
+    padding: 0;
+}
+
+.datepickerdemoCalendar {
+  /** Demo styles for mdCalendar. */ }
+  .datepickerdemoCalendar label {
+    font-size: x-small; }
+	
+ul{
+  list-style-type:none;
+}	
+
+
+
+
+
+@keyframes bounce-in-top {
+  0% {
+    transform: translateY(-500px);
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+  38% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+    opacity: 1;
+  }
+  55% {
+    transform: translateY(-65px);
+    animation-timing-function: ease-in;
+  }
+  72% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+  }
+  81% {
+    transform: translateY(-28px);
+    animation-timing-function: ease-in;
+  }
+  90% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+  }
+  95% {
+    transform: translateY(-8px);
+    animation-timing-function: ease-in;
+  }
+  100% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+  }
+}
+
+.rejestracja1, .rejestracja2{
+    float: left;
+}
+
+
+.startBox{
+    float: center;
+    padding-top: 100px;
+    padding: auto;
+    /width: 90%; 
+    margin: auto;
+    /background-color: yellow;
+}
+
+.mojeRezerwacje{
+        float: center;
+    padding-top: 100px;
+    padding: auto;
+    /width: 90%; 
+    margin: auto;
+    /background-color: yellow;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

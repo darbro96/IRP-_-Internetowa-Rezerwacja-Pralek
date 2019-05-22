@@ -1,0 +1,42 @@
+﻿<html>
+    <head>
+        <script type="text/javascript" src="../js/lib/angular.min.js"></script>
+        <title>Strona główna</title>
+    </head>
+    <body ng-app="washers">
+        <div class="addDormitory" ng-controller="dormsController2">
+            <label>Nazwa</label> <input type="text" ng-model="dormitoryName" class="input-sm spacing"/>
+            <button ng-click="addDormitory()" class="btn btn-sm btn-info">Dodaj</button>
+        </div>
+        <script type="text/javascript">
+            //var demoApp = angular.module('washers', [ 'washers.controllers','washers.services' ]);
+// angular.module('washers', []).controller('dormsController', function($scope,$http) {
+//        $http.get("http://localhost:8080/aka/all").
+//        then(function (result) {
+//            console.log("success: " + result.data);
+//            $scope.products = result.data;
+//        }, function(err){
+//           console.log('err',err);
+//        });
+//    });
+
+            angular.module('washers', []).controller('dormsController2', function ($scope, $http) {
+                $scope.addDormitory = function () {
+                    $http.get("http://localhost:8080/aka/add/" + $scope.dormitoryName).
+                            then(function () {
+                                console.log("success");
+                                window.location.href = '/test';
+                            }, function (err) {
+                                console.log('err', err);
+                                //window.location.href = 'http://localhost:8080/home';
+                            })
+                }
+            });
+
+//var demoApp = angular.module('washers', ['washers.controllers','washers.services' ]);
+//var module = angular.module('washers.controllers', []);
+//module.controller("UserController", [ "$scope", "UserService",
+//    function ($scope)
+        </script>
+    </body>
+</html>

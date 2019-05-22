@@ -1,0 +1,134 @@
+body{
+    /background-image: url("tlo3.jpg");
+    background: linear-gradient(0deg, rgba(34,193,195,0.6867121848739496) 0%, rgba(253,187,45,0.5354516806722689) 100%);
+    font-family: 'Roboto';
+}
+h1, input::-webkit-input-placeholder, button {
+  font-family: 'roboto', sans-serif;
+  -webkit-transition: all 0.3s ease-in-out;
+          transition: all 0.3s ease-in-out;
+}
+
+h1 {
+  height: 100px;
+  width: 100%;
+  font-size: 20px;
+  background-image: linear-gradient(to right bottom, #370505, #560510, #770315, #990118, #bc0019);
+  color: white;
+  line-height: 150%;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+
+
+
+
+.container{
+    /background-color: red;
+    margin: 20px;
+    padding: 20px;
+    height: 80%;
+    text-align: center;
+    color: gray;
+}
+
+
+.logowanieAdmin{
+    background-color: #ffffff;
+    margin: auto;
+    /padding: 20px;
+    height: 350px;
+    width: 500px;
+    text-align: center;
+    border-radius: 20px;
+    font-size: 20px;
+}
+.logowanieGora{
+    margin: 0;
+    height: 60px;
+    color: #ffffff;
+    padding-left: 60px;
+    font-size: 20px;
+}
+.box1{
+
+    background-color: #ffffff;
+    height: 120%;
+    width: 80%;
+    float: left;
+    box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.2);
+    padding-left: 20%;
+}
+.wbox1{
+
+    /background-color: orange;
+    width: 400px;
+    height: 700px;
+    min-width: 310px;
+    /position: center;
+    float: left;
+    
+}
+
+
+input::-webkit-input-placeholder, button {
+    font-family: 'roboto', sans-serif;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+input, select {
+    font-size: 16px;
+    margin: 10px;
+    width: 350px;
+    display: block;
+    border: none;
+    padding: 10px 0;
+    border: solid 1px gray;
+    border-bottom: solid 1px #990118;
+    -webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+    transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, #990118; 4%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #990118; 4%);
+    background-position: -200px 0;
+    background-size: 200px 100%;
+    background-repeat: no-repeat;
+    color: #0e6252;
+    float: center;
+}
+input:focus, input:valid {
+    box-shadow: none;
+    outline: none;
+    background-position: 0 0;
+}
+input:focus::-webkit-input-placeholder, input:valid::-webkit-input-placeholder {
+    color: #370505;
+    font-size: 11px;
+    -webkit-transform: translateY(-20px);
+    transform: translateY(-20px);
+    visibility: visible !important;
+}
+
+button {
+    border: none;
+    font-size: 16px;
+    background-color: #22c1c3;
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 10px;
+    width: 100px;
+    color: white;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+    float: left;
+    margin: 16px;
+
+
+}
+button:hover {
+    -webkit-transform: translateY(-3px);
+    -ms-transform: translateY(-3px);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.2);
+}

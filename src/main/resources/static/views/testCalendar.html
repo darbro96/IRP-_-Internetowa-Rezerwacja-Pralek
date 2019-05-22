@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <script type="text/javascript" src="../js/lib/angular.min.js"></script>
+        <style>
+            .datepickerdemoCalendar {
+                /** Demo styles for mdCalendar. */ }
+            .datepickerdemoCalendar label {
+                font-size: x-small; }
+            </style>
+        </head>
+        <body>
+        <md-content ng-controller="AppCtrl as ctrl" layout="column" layout-gt-sm="row" layout-padding="" ng-cloak="" class="datepickerdemoCalendar" ng-app="MyApp">
+        <div layout="column" flex-order="1" flex-order-gt-sm="0">
+            <md-subheader>Start Date</md-subheader>
+            <md-calendar ng-model="ctrl.startDate"></md-calendar>
+        </div>
+        <div layout="column" flex-order="1" flex-order-gt-sm="1">
+            <md-subheader>End Date</md-subheader>
+            <md-calendar ng-model="ctrl.endDate"></md-calendar>
+        </div>
+        <div layout="column" flex-order="0" flex-order-gt-sm="2">
+            <md-subheader>Dates</md-subheader>
+            <div>
+                <label>Start</label>
+                <div>{{ctrl.startDate| date:shortDate}}</div>
+            </div>
+            <div><label>End</label>
+                <div>{{ctrl.endDate| date:shortDate}}</div>
+            </div>
+        </div>
+    </md-content>
+
+    <!--
+    Copyright 2018 Google LLC. All Rights Reserved. 
+    Use of this source code is governed by an MIT-style license that can be found
+    in the LICENSE file at http://material.angularjs.org/HEAD/license.
+    -->
+    <script type="text/javascript">
+        angular.module('MyApp', ['ngMaterial', 'ngMessages', 'material.svgAssetsCache']).controller('AppCtrl', function () {
+            this.startDate = new Date();
+            this.endDate = new Date();
+            this.endDate.setDate(this.endDate.getDate() + 5);
+        });
+    </script>
+</body>﻿
+</html>

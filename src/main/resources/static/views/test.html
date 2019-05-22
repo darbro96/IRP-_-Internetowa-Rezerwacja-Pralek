@@ -1,0 +1,119 @@
+﻿<html>
+    <head>
+        <script type="text/javascript" src="../js/lib/angular.min.js"></script>
+        <title>test</title>
+        <style>
+            h1   {color: blue;}
+            p    {color: red;}
+            #logDiv {border-width: 1px;
+                     border-color: red;
+                     border-style: dashed;
+                     width: 200px;
+                     padding-left: 5px;
+                     padding-bottom: 2px;
+                     padding-top: 2px;}
+            </style>
+        </head>
+        <body ng-app="washers">
+            <div class="container" ng-controller="dormsController">
+            <h1>Lista akademików</h1>
+            <table border="1">
+                <tr>
+                    <th>Id</th>
+                    <th>Nazwa</th>
+                </tr>
+                <tr ng-repeat="x in products">
+                    <td bgcolor="red">{{ x.idDormitory}}</td>
+                    <td>{{ x.name}}</td>
+                    <td><button ng-click="deleteDormitory(x.idDormitory)" class="btn btn-sm btn-info">Usuń</button>
+                </tr>
+            </table>
+        </div>
+
+        <div class="container" ng-controller="dormsController">
+            <a href="http://localhost:8080/addDormitory">Dodaj akademik</a><br><br>
+            <h2>Wybierz akademik</h3>
+                <select ng-model="selectedDormitory" ng-options="x.name for x in products">
+                </select>
+                <h3>Wybrałeś: <i>{{selectedDormitory.name}} </i> (id: {{selectedDormitory.idDormitory}})</h3><br><br>
+                </div>
+
+                <div id="logDiv" ng-controller="dormsController" ng-show="wysw">
+                    <form method="get">
+                        <label>login</label> <input type="text" name="login" ng-model="login" class="input-sm spacing"/><BR>
+                        <label>hasło</label> <input type="password" name="haslo" ng-model="haslo" class="input-sm spacing"/><BR>
+                        <button ng-click="loginUser()" class="btn btn-sm btn-info">Zaloguj</button>
+                    </form>
+                </div>
+                <br><br>
+                <a href="http://localhost:8080/addWasher">Dodaj pralkę</a><br><br>
+                <script type="text/javascript">
+                    //var demoApp = angular.module('washers', [ 'washers.controllers','washers.services' ]);
+                    angular.module('washers', []).controller('dormsController', function ($scope, $http) {
+                        $scope.wysw = true;
+                        console.log("wysw", $scope.wysw);
+                        $http.get("http://localhost:8080/aka/all").
+                                then(function (result) {
+                                    console.log("success: " + result.data);
+                                    $scope.products = result.data;
+                                }, function (err) {
+                                    console.log('err', err);
+                                });
+                        $scope.deleteDormitory = function (idDormitory)
+                        {
+                            $http.get("http://localhost:8080/aka/del/" + idDormitory).
+                                    then(function (result) {
+                                        console.log("success");
+                                        //alert('Success');
+                                        window.location.reload();
+                                    }, function (err) {
+                                        console.log('err', err);
+                                        alert('Error');
+                                    });
+                        }
+                        $scope.loginUser = function ()
+                        {
+//                            $http.get("http://localhost:8080/log/" + $scope.login + "/" + $scope.haslo).
+//                                    then(function (result) {
+//                                        console.log(result);
+//                                        //alert('Success');
+//                                        //$http.post("/zalogowany",$scope.login);
+//                                        //window.location="/zalogowany";
+//                                        if(result.data==true)
+//                                        {
+//                                            window.location="/zalogowany";
+//                                        }
+//                                        else
+//                                        {
+//                                            alert("Podano błędny login lub hasło");
+//                                        }
+//                                    }), function (err) {
+//                                console.log('err', err);
+//                            }
+                            $scope.wysw = false;
+                        }
+                    });
+
+
+//                    angular.module('washers', []).controller('loginController', function ($scope, $http) {
+//
+//                    });
+
+                    //angular.module('washers', []).controller('dormsController2', function($scope,$http) {
+                    //        $scope.addDormitory=function (){
+                    //            $http.get("http://localhost:8080/aka/add/"+$scope.dormitoryName).
+                    //                    then(function(){
+                    //                       console.log("success"); 
+                    //            }, function(err){
+                    //                console.log('err',err);
+                    //            })
+                    //        }
+                    //    });
+
+                    //var demoApp = angular.module('washers', ['washers.controllers','washers.services' ]);
+                    //var module = angular.module('washers.controllers', []);
+                    //module.controller("UserController", [ "$scope", "UserService",
+                    //    function ($scope)
+                </script>
+                </body>
+                </html>
